@@ -1,79 +1,32 @@
 package com.example.matchservice.entities;
 
 import com.example.matchservice.Sport;
-
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
 
 @Entity
-@Access(AccessType.PROPERTY)
+@Getter
+@Setter
 public class Match {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String description;
-    private Date matchDate;
-    private Date matchTime;
+    private LocalDate matchDate;
+    private LocalTime matchTime;
     private String teamA;
     private String teamB;
 
     @Enumerated(EnumType.STRING)
     private Sport sport;
 
-    public Integer getId() {
-        return id;
-    }
+    @OneToMany(mappedBy = "match")
+    private List<MatchOdds> matchOdds;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Date getMatchDate() {
-        return matchDate;
-    }
-
-    public void setMatchDate(Date matchDate) {
-        this.matchDate = matchDate;
-    }
-
-    public Date getMatchTime() {
-        return matchTime;
-    }
-
-    public void setMatchTime(Date matchTime) {
-        this.matchTime = matchTime;
-    }
-
-    public String getTeamA() {
-        return teamA;
-    }
-
-    public void setTeamA(String teamA) {
-        this.teamA = teamA;
-    }
-
-    public String getTeamB() {
-        return teamB;
-    }
-
-    public void setTeamB(String teamB) {
-        this.teamB = teamB;
-    }
-
-    public Sport getSport() {
-        return sport;
-    }
-
-    public void setSport(Sport sport) {
-        this.sport = sport;
-    }
 }

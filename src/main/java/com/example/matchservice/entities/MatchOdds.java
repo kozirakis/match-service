@@ -2,50 +2,24 @@ package com.example.matchservice.entities;
 
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Access(AccessType.PROPERTY)
+@Getter
+@Setter
 public class MatchOdds {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @ManyToOne
-    @JoinColumn(name = "match_id")
+    @JoinColumn(name = "match_id", nullable = false)
     private Match match;
+
     private String specifier;
+
     private double odd;
 
-    // Constructors, getters, and setters
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Match getMatch() {
-        return match;
-    }
-
-    public void setMatch(Match match) {
-        this.match = match;
-    }
-
-    public String getSpecifier() {
-        return specifier;
-    }
-
-    public void setSpecifier(String specifier) {
-        this.specifier = specifier;
-    }
-
-    public double getOdd() {
-        return odd;
-    }
-
-    public void setOdd(double odd) {
-        this.odd = odd;
-    }
 }
