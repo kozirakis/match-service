@@ -29,7 +29,7 @@ public final class MatchOddsController {
 
     @PutMapping("/edit/{id}")
     public ResponseEntity<MatchOdds> editMatchOdds(@PathVariable("id") long id,
-                                                         @RequestBody MatchOddsDto editDto) {
+                                                   @RequestBody MatchOddsDto editDto) {
         matchOddsService.editMatchOdds(id, editDto);
         return new ResponseEntity<>(new MatchOdds(), HttpStatus.OK);
     }

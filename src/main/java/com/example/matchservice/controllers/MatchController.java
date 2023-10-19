@@ -1,8 +1,6 @@
 package com.example.matchservice.controllers;
 
-import com.example.matchservice.dtos.CreateMatchDto;
 import com.example.matchservice.dtos.MatchDto;
-import com.example.matchservice.entities.Match;
 import com.example.matchservice.services.MatchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,16 +21,16 @@ public class MatchController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Match> createMatch(@RequestBody CreateMatchDto createDto) {
-        matchService.createMatch(createDto);
-        return new ResponseEntity<>(new Match(), HttpStatus.OK);
+    public ResponseEntity<MatchDto> createMatch(@RequestBody MatchDto createDto) {
+        MatchDto matchDto = matchService.createMatch(createDto);
+        return new ResponseEntity<>(matchDto, HttpStatus.OK);
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<Match> editMatch(@PathVariable("id") long id,
-                                                     @RequestBody MatchDto editDto) {
-        matchService.editMatch(id, editDto);
-        return new ResponseEntity<>(new Match(), HttpStatus.OK);
+    public ResponseEntity<MatchDto> editMatch(@PathVariable("id") long id,
+                                              @RequestBody MatchDto editDto) {
+        MatchDto matchDto = matchService.editMatch(id, editDto);
+        return new ResponseEntity<>(matchDto, HttpStatus.OK);
     }
 
     @GetMapping(value = "{id}")
@@ -46,8 +44,8 @@ public class MatchController {
     }
 
     @DeleteMapping("/id/{id}")
-    public ResponseEntity<Match> delete(@PathVariable("id") long id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") long id) {
         matchService.delete(id);
-        return new ResponseEntity<>(new Match(), HttpStatus.OK);
+        return ResponseEntity.noContent().build();
     }
 }

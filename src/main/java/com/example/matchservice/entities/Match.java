@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,7 +27,7 @@ public class Match {
     @Enumerated(EnumType.STRING)
     private Sport sport;
 
-    @OneToMany(mappedBy = "match")
-    private List<MatchOdds> matchOdds;
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MatchOdds> matchOdds = new ArrayList<>();
 
 }

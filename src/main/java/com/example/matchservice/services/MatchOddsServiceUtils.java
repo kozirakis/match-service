@@ -4,7 +4,7 @@ import com.example.matchservice.dtos.CreateMatchOddsDto;
 import com.example.matchservice.dtos.MatchOddsDto;
 import com.example.matchservice.entities.MatchOdds;
 import com.example.matchservice.repositories.MatchOddsRepository;
-import org.modelmapper.ModelMapper;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class MatchOddsServiceUtils implements MatchOddsService {
 
     private final Logger logger = LoggerFactory.getLogger(MatchOddsServiceUtils.class);
     private final MatchOddsRepository matchOddsRepository;
-    private ModelMapper strictModelMapper;
+
 
 
     @Autowired
@@ -30,7 +30,7 @@ public class MatchOddsServiceUtils implements MatchOddsService {
         logger.info("Creating Match Odds");
         try {
             MatchOdds matchOdds = new MatchOdds();
-            strictModelMapper.map(createDto, matchOdds);
+
             matchOddsRepository.save(matchOdds);
         } catch (Exception e) {
             logger.info("Exception While Creating Match Odds");
@@ -43,7 +43,7 @@ public class MatchOddsServiceUtils implements MatchOddsService {
         logger.info("Editing Match Odds");
         try {
             MatchOdds matchOdds = matchOddsRepository.findById(id).orElseThrow(() ->  new RuntimeException("Entity not found"));
-            strictModelMapper.map(editDto, matchOdds);
+
             matchOddsRepository.save(matchOdds);
         } catch (Exception e) {
             logger.info("Exception While Editing Match Odds");
@@ -56,7 +56,7 @@ public class MatchOddsServiceUtils implements MatchOddsService {
         logger.info("Fetching Match Odds By Id");
         try {
             MatchOdds matchOdds = matchOddsRepository.findById(id).orElseThrow(() ->  new RuntimeException("Entity not found"));
-            return strictModelMapper.map(matchOdds, MatchOddsDto.class);
+            return null;
         } catch (Exception e) {
             logger.info("Exception While Fetching Match Odds By Id");
             throw new RuntimeException(e);
@@ -67,7 +67,7 @@ public class MatchOddsServiceUtils implements MatchOddsService {
     public List<MatchOddsDto> findAll() {
         logger.info("Fetching All Match Odds");
         try {
-            return matchOddsRepository.findAll().stream().map(matchOdds -> strictModelMapper.map(matchOdds, MatchOddsDto.class)).toList();
+            return null;
         } catch (Exception e) {
             logger.info("Exception While Fetching All Match Odds");
             throw new RuntimeException(e);
