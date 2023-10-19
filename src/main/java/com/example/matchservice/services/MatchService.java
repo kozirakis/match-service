@@ -15,14 +15,12 @@ import java.util.List;
 @Service
 public class MatchService {
     private final MatchRepository matchRepository;
-    private final MatchOddsRepository matchOddsRepository;
 
     private final MatchTransformer matchTransformer;
 
     @Autowired
     public MatchService(MatchRepository matchRepository, MatchOddsRepository matchOddsRepository, MatchTransformer matchTransformer) {
         this.matchRepository = matchRepository;
-        this.matchOddsRepository = matchOddsRepository;
         this.matchTransformer = matchTransformer;
     }
 
